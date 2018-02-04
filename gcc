@@ -1,0 +1,1 @@
+gcc main.c ft_atoi.c ft_bzero.c ft_putnbr.c ft_isdigit.c ft_itoa.c ft_memalloc.c ft_putchar.c ft_putstr.c ft_strcmp.c ft_strncpy.c ft_strlen.c ft_is_it_space.c
