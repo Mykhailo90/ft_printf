@@ -44,4 +44,5 @@ int			ft_atoi(const char *nptr);
 int 		ft_isdigit(int character);
 int			ft_is_it_space(char ch);
 int			ft_strcmp(const char *s1, const char *s2);
+char		*ft_strnew(size_t size);
 #endif
