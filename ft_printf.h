@@ -31,6 +31,12 @@ typedef struct 	s_list
 	char 		specificator;
 }				t_list;
 void		ft_putchar(char c);
+int 		is_it_size(char ch);
+int 		is_it_flags(char ch);
+int 		search_fl_n(char *str);
+int 		search_dif_fl(char *str, char x);
+void 		search_flags(t_list *commands, char *str);
+void		search_specificator(t_list *commands, char *str);
 void		ft_putstr(char const *s);
 void		ft_putnbr(int n);
 int			is_input_spec(char ch);

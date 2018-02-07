@@ -1,0 +1,24 @@
+#include "ft_printf.h"
+
+int		is_input_spec(char ch)
+{
+	if (ch == 'c' || ch == 's' || ch == 'd' || ch == 'i' || ch == '%' ||
+		ch == 'x' || ch == 'X' || ch == 'u' || ch == 'f' || ch == 'F' ||
+		ch == 'e' || ch == 'E' || ch == 'a' || ch == 'A' || ch == 'g' ||
+		ch == 'G' || ch == 'n' || ch == 'p')
+		return ((int)(ch - '0'));
+	return (-1);
+}
+
+void	search_specificator(t_list *commands, char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0' && is_input_spec(str[i]) == -1)
+	{
+		i++;
+	}
+	if (str[i] != '\0')
+		commands->specificator = str[i];
+}
