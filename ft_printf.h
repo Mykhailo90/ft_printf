@@ -31,6 +31,8 @@ typedef struct 	s_list
 	char 		specificator;
 }				t_list;
 void			ft_putchar(char c);
+char			*ft_strcpy(char *dest, const char *src);
+char			*ft_strcat(char *dest, const char *src);
 int 			is_it_size(char ch);
 int 			is_it_flags(char ch);
 int 			search_fl_n(char *str);
@@ -53,7 +55,9 @@ int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
 void			ft_memdel(void **ap);
+size_t 			len_s(char *str);
 void 			search_width(t_list *commands, char *str);
+void 			search_size(t_list *commands, char *str);
 static void 	search_last_pos(t_list *commands, char *str);
 void 			search_precision(t_list *commands, char *str);
 void 			write_precision(t_list *commands, char *str);
