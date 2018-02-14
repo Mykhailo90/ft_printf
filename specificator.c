@@ -5,7 +5,8 @@ int		is_input_spec(char ch)
 	if (ch == 'c' || ch == 's' || ch == 'd' || ch == 'i' || ch == '%' ||
 		ch == 'x' || ch == 'X' || ch == 'u' || ch == 'f' || ch == 'F' ||
 		ch == 'e' || ch == 'E' || ch == 'a' || ch == 'A' || ch == 'g' ||
-		ch == 'G' || ch == 'n' || ch == 'p')
+		ch == 'G' || ch == 'n' || ch == 'p' || ch == 'S' || ch == 'D' ||
+		ch == 'O' || ch == 'U' || ch == 'C')
 		return ((int)(ch - '0'));
 	return (-1);
 }

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static size_t		count_symbols(size_t n)
+static size_t		count_symbols(long long n)
 {
 	size_t			i;
 
@@ -27,7 +27,7 @@ static size_t		count_symbols(size_t n)
 	return (i);
 }
 
-static void			input_symbols(char *res, size_t n, size_t len)
+static void			input_symbols(char *res, long long n, size_t len)
 {
 	if (n < 0)
 	{
@@ -48,12 +48,12 @@ static void			input_symbols(char *res, size_t n, size_t len)
 	}
 }
 
-char				*ft_itoa(size_t n)
+char				*ft_itoa(long long n)
 {
 	char			*res;
 	size_t			len;
 	char			*start;
-	size_t			num;
+	long long		num;
 
 	num = n;
 	len = count_symbols(num);

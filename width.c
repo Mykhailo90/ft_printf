@@ -12,30 +12,31 @@
 
 #include "ft_printf.h"
 
-static void search_last_pos(t_list *commands, char *str)
+static void search_last_pos(t_list *com, char *str)
 {
 	int i;
 
 	i = 0;
 	while (ft_isdigit(str[i]))
 		i++;
-	if (commands->width)
-		ft_strdel(&commands->width);
-	commands->width = ft_strnew(i);
-	commands->width = ft_strncpy(commands->width, &str[0], i);
+	if (com->width)
+		ft_strdel(&com->width);
+	com->width = ft_strnew(i);
+	com->width = ft_strncpy(com->width, &str[0], i);
 }
 
-void search_width(t_list *commands, char *str)
+void search_width(t_list *com, char *str)
 {
 	int i;
 
 	i = 0;
 	while (str[i] != '\0' && is_input_spec(str[i]) == -1)
 	{
-		if (ft_isdigit(str[i]) && str[i] != '0' && str[i - 1] != '.' &&
-			((str[i - 1] == '0' && !ft_isdigit(str[i - 2])) ||
-				is_it_flags(str[i - 1]) || is_it_size(str[i - 1])))
-			search_last_pos(commands, &str[i]);
+		if (ft_isdigit(str[i]) && i == 0)
+			search_last_pos(com, &str[i]);
+		else if (ft_isdigit(str[i]) && str[i] != '0' && str[i - 1] != '.'
+			&& (!ft_isdigit(str[i - 1]) || str[i - 1] == '0'))
+			search_last_pos(com, &str[i]);
 		i++;
 	}
 }

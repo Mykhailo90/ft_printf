@@ -20,7 +20,7 @@ void write_precision(t_list *commands, char *str)
 	while (ft_isdigit(str[i]))
 		i++;
 	if (commands->precision)
-		ft_strdel(&commands->width);
+		ft_strdel(&commands->precision);
 	commands->precision = ft_memalloc(sizeof(char) * i + 1);
 	commands->precision = ft_strncpy(commands->precision, &str[0], i);
 }
@@ -35,7 +35,7 @@ void search_precision(t_list *commands, char *str)
 		if (str[i] == '.')
 		{
 			if (commands->precision)
-				ft_strdel(&commands->width);
+				ft_strdel(&commands->precision);
 			commands->precision = ft_memalloc(sizeof(char) * 2);
 			commands->precision[0] = '0';
 			commands->precision[1] = '\0';

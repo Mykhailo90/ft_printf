@@ -50,7 +50,7 @@ int search_ll(t_list *commands, char *str)
 		else
 		{
 			commands->size = ft_memalloc(sizeof(char) * 2);
-			commands->size[0] = '1';
+			commands->size[0] = '2';
 		}
 		return (1);
 	}

@@ -20,7 +20,8 @@
 # include <stdarg.h>
 # include <string.h>
 #include <inttypes.h>
-#include <stddef.h> 
+#include <stddef.h>
+#include <wchar.h>
 
 typedef struct 	s_list
 {
@@ -30,7 +31,17 @@ typedef struct 	s_list
 	char		*size;
 	char 		specificator;
 }				t_list;
+
+typedef struct 	s_help
+{
+	int 		i;
+	int 		n;
+	char 		*tmp;
+	int 		number;
+}				t_help;
+
 void			ft_putchar(char c);
+char			*add_esp(char *str, t_list *com);
 char			*ft_strcpy(char *dest, const char *src);
 char			*ft_strcat(char *dest, const char *src);
 int 			is_it_size(char ch);
@@ -46,7 +57,7 @@ size_t			ft_strlen(const char *s);
 char			*ft_strjoin(char const *s1, char const *s2);
 void			*ft_memalloc(size_t size);
 char			*ft_strncpy(char *dest, const char *src, size_t n);
-char			*ft_itoa(size_t n);
+char			*ft_itoa(long long n);
 void			ft_bzero(void *s, size_t n);
 int				ft_atoi(const char *nptr);
 int 			ft_isdigit(int character);
@@ -56,10 +67,13 @@ char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
 void			ft_memdel(void **ap);
 size_t 			len_s(char *str);
-void 			search_width(t_list *commands, char *str);
+void 			search_width(t_list *com, char *str);
 void 			search_size(t_list *commands, char *str);
-static void 	search_last_pos(t_list *commands, char *str);
+static void 	search_last_pos(t_list *com, char *str);
 void 			search_precision(t_list *commands, char *str);
 void 			write_precision(t_list *commands, char *str);
+void			*ft_memchr(const void *s, int c, size_t n);
+int				input_symb(char *str, char ch);
+char			*prepare_str(t_list *com, char *str);
 
 #endif
