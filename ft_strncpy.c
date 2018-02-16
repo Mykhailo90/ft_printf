@@ -26,3 +26,18 @@ char	*ft_strncpy(char *dest, const char *src, size_t n)
 	}
 	return (res);
 }
+
+unsigned char	*ft_strncpy_U(unsigned char *dest, const unsigned char *src, size_t n)
+{
+	unsigned char	*res;
+
+	res = dest;
+	while (n && (*dest++ = *src++))
+		n--;
+	if (n)
+	{
+		while (--n)
+			*dest++ = '\0';
+	}
+	return (res);
+}

@@ -24,3 +24,16 @@ char	*ft_strcpy(char *dest, const char *src)
 	*dest = '\0';
 	return (res);
 }
+
+unsigned char	*ft_strcpy_U(unsigned char *dest, const unsigned char *src)
+{
+	unsigned char	*res;
+
+	if (!dest && !src)
+		return (NULL);
+	res = dest;
+	while (*(src))
+		*(dest++) = *(src++);
+	*dest = '\0';
+	return (res);
+}

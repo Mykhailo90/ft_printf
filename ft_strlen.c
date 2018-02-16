@@ -21,3 +21,14 @@ size_t	ft_strlen(const char *s)
 		count++;
 	return (count);
 }
+
+size_t	ft_strlen_U(const unsigned char *s)
+{
+	size_t count;
+
+	count = 0;
+	while (*(s++) != '\0')
+		count++;
+	return (count);
+}
+

@@ -32,3 +32,24 @@ char		*ft_strcat(char *dest, const char *src)
 	*dest = '\0';
 	return (st);
 }
+
+unsigned char		*ft_strcat_U(unsigned char *dest, const unsigned char *src)
+{
+	size_t		i;
+	size_t		j;
+	unsigned char		*st;
+
+	i = 0;
+	j = 0;
+	st = dest;
+	while (*(dest++) != '\0')
+		i++;
+	while (*(src++) != '\0')
+		j++;
+	src = src - j - 1;
+	dest--;
+	while (j--)
+		*(dest++) = *(src++);
+	*dest = '\0';
+	return (st);
+}

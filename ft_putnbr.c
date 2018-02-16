@@ -14,9 +14,10 @@
 
 void	ft_putnbr(int n)
 {
+	char *tmp = "-2147483648";
 	if (n == -2147483648)
 	{
-		ft_putstr("-2147483648");
+		ft_putstr((unsigned char *)tmp);
 		return ;
 	}
 	if (n < 0)

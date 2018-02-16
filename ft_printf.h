@@ -40,7 +40,12 @@ typedef struct 	s_help
 	int 		number;
 }				t_help;
 
-void			ft_putchar(char c);
+unsigned char	*ft_strcat_U(unsigned char *dest, const unsigned char *src);
+size_t			ft_strlen_U(const unsigned char *s);
+unsigned char	*ft_strncpy_U(unsigned char *dest, const unsigned char *src, size_t n);
+unsigned char	*ft_strjoin_U(unsigned char const *s1, unsigned char const *s2);
+unsigned char	*ft_strcpy_U(unsigned char *dest, const unsigned char *src);
+void			ft_putchar(unsigned char c);
 char			*add_esp(char *str, t_list *com);
 char			*ft_strcpy(char *dest, const char *src);
 char			*ft_strcat(char *dest, const char *src);
@@ -50,7 +55,7 @@ int 			search_fl_n(char *str);
 int 			search_dif_fl(char *str, char x);
 void 			search_flags(t_list *commands, char *str);
 void			search_specificator(t_list *commands, char *str);
-void			ft_putstr(char const *s);
+void			ft_putstr(unsigned char const *s);
 void			ft_putnbr(int n);
 int				is_input_spec(char ch);
 size_t			ft_strlen(const char *s);
