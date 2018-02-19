@@ -19,66 +19,74 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <string.h>
-#include <inttypes.h>
-#include <stddef.h>
-#include <wchar.h>
+# include <inttypes.h>
+# include <stddef.h>
+# include <wchar.h>
 
-typedef struct 	s_list
+typedef struct		s_list
 {
-	char		*flags;
-	char		*width;
-	char		*precision;
-	char		*size;
-	char 		specificator;
-}				t_list;
+	char			*flags;
+	char			*width;
+	char			*precision;
+	char			*size;
+	char			specificator;
+}					t_list;
 
-typedef struct 	s_help
+typedef struct		s_help
 {
-	int 		i;
-	int 		n;
-	char 		*tmp;
-	int 		number;
-}				t_help;
+	int				i;
+	int				n;
+	char			*tmp;
+	int				number;
+}					t_help;
 
-unsigned char	*ft_strcat_U(unsigned char *dest, const unsigned char *src);
-size_t			ft_strlen_U(const unsigned char *s);
-unsigned char	*ft_strncpy_U(unsigned char *dest, const unsigned char *src, size_t n);
-unsigned char	*ft_strjoin_U(unsigned char const *s1, unsigned char const *s2);
-unsigned char	*ft_strcpy_U(unsigned char *dest, const unsigned char *src);
-void			ft_putchar(unsigned char c);
-char			*add_esp(char *str, t_list *com);
-char			*ft_strcpy(char *dest, const char *src);
-char			*ft_strcat(char *dest, const char *src);
-int 			is_it_size(char ch);
-int 			is_it_flags(char ch);
-int 			search_fl_n(char *str);
-int 			search_dif_fl(char *str, char x);
-void 			search_flags(t_list *commands, char *str);
-void			search_specificator(t_list *commands, char *str);
-void			ft_putstr(unsigned char const *s);
-void			ft_putnbr(int n);
-int				is_input_spec(char ch);
-size_t			ft_strlen(const char *s);
-char			*ft_strjoin(char const *s1, char const *s2);
-void			*ft_memalloc(size_t size);
-char			*ft_strncpy(char *dest, const char *src, size_t n);
-char			*ft_itoa(long long n);
-void			ft_bzero(void *s, size_t n);
-int				ft_atoi(const char *nptr);
-int 			ft_isdigit(int character);
-int				ft_is_it_space(char ch);
-int				ft_strcmp(const char *s1, const char *s2);
-char			*ft_strnew(size_t size);
-void			ft_strdel(char **as);
-void			ft_memdel(void **ap);
-size_t 			len_s(char *str);
-void 			search_width(t_list *com, char *str);
-void 			search_size(t_list *commands, char *str);
-static void 	search_last_pos(t_list *com, char *str);
-void 			search_precision(t_list *commands, char *str);
-void 			write_precision(t_list *commands, char *str);
-void			*ft_memchr(const void *s, int c, size_t n);
-int				input_symb(char *str, char ch);
-char			*prepare_str(t_list *com, char *str);
-
+unsigned char		*ft_strcat_uv(unsigned char *dest,
+					const unsigned char *src);
+size_t				ft_strlen_uv(const unsigned char *s);
+unsigned char		*ft_strncpy_uv(unsigned char *dest,
+					const unsigned char *src, size_t n);
+unsigned char		*ft_strjoin_uv(unsigned char const *s1,
+					unsigned char const *s2);
+unsigned char		*ft_strcpy_uv(unsigned char *dest,
+					const unsigned char *src);
+void				ft_putchar(unsigned char c);
+char				*add_esp(char *str, t_list *com);
+char				*ft_strcpy(char *dest, const char *src);
+char				*ft_strcat(char *dest, const char *src);
+int					is_it_size(char ch);
+int					is_it_flags(char ch);
+int					search_fl_n(char *str);
+int					search_dif_fl(char *str, char x);
+void				search_flags(t_list *commands, char *str);
+void				search_specificator(t_list *commands, char *str);
+void				ft_putstr(unsigned char const *s);
+void				ft_putnbr(int n);
+int					is_input_spec(char ch);
+size_t				ft_strlen(const char *s);
+char				*ft_strjoin(char const *s1, char const *s2);
+void				*ft_memalloc(size_t size);
+char				*ft_strncpy(char *dest, const char *src, size_t n);
+char				*ft_itoa(long long n);
+void				ft_bzero(void *s, size_t n);
+int					ft_atoi(const char *nptr);
+int					ft_isdigit(int character);
+int					ft_is_it_space(char ch);
+int					ft_strcmp(const char *s1, const char *s2);
+char				*ft_strnew(size_t size);
+void				ft_strdel(char **as);
+void				ft_memdel(void **ap);
+size_t				len_s(char *str);
+void				search_width(t_list *com, char *str);
+void				search_size(t_list *commands, char *str);
+static void			search_last_pos(t_list *com, char *str);
+void				search_precision(t_list *commands, char *str);
+void				write_precision(t_list *commands, char *str);
+int					input_symb(char *str, char ch);
+char				*prepare_str(t_list *com, char *str);
+char				*add_null_before(t_list *com, char *str);
+char				*add_null(t_list *com, char *str);
+void				full_n(char *tmp, int i, int n);
+void				help_func(char *str, t_help *help, t_list *com);
+unsigned char		*convert_in_str1(wchar_t *tmp, int l);
+unsigned char		*convert_in_str(wchar_t *tmp);
 #endif

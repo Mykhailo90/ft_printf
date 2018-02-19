@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+char				*ft_strcpy(char *dest, const char *src)
 {
-	char	*res;
+	char			*res;
 
 	if (!dest && !src)
 		return (NULL);
@@ -25,7 +25,7 @@ char	*ft_strcpy(char *dest, const char *src)
 	return (res);
 }
 
-unsigned char	*ft_strcpy_U(unsigned char *dest, const unsigned char *src)
+unsigned char		*ft_strcpy_uv(unsigned char *dest, const unsigned char *src)
 {
 	unsigned char	*res;
 

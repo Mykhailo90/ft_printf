@@ -1,6 +1,18 @@
- #include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   size.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/19 20:00:49 by msarapii          #+#    #+#             */
+/*   Updated: 2018/02/19 20:00:50 by msarapii         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int 	is_it_size(char ch)
+#include "ft_printf.h"
+
+int			is_it_size(char ch)
 {
 	if (ch == 'j' || ch == 'L' || ch == 'z' || ch == 't' || ch == 'h' ||
 		ch == 'l')
@@ -9,9 +21,9 @@ int 	is_it_size(char ch)
 		return (0);
 }
 
-size_t 	len_s(char *str)
+size_t		len_s(char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (is_it_size(str[i]))
@@ -19,9 +31,9 @@ size_t 	len_s(char *str)
 	return (i);
 }
 
-int search_hh(t_list *commands, char *str)
+int			search_hh(t_list *commands, char *str)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	if (str[i] == 'h' && str[i + 1] == 'h')
@@ -38,9 +50,9 @@ int search_hh(t_list *commands, char *str)
 	return (0);
 }
 
-int search_ll(t_list *commands, char *str)
+int			search_ll(t_list *commands, char *str)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	if (str[i] == 'l' && str[i + 1] == 'l')
@@ -57,10 +69,10 @@ int search_ll(t_list *commands, char *str)
 	return (0);
 }
 
-void search_size(t_list *commands, char *str)
+void		search_size(t_list *commands, char *str)
 {
-	int i;
-	char tmp [2];
+	int		i;
+	char	tmp[2];
 
 	i = 0;
 	tmp[1] = '\0';
@@ -68,7 +80,7 @@ void search_size(t_list *commands, char *str)
 	{
 		if (is_it_size(str[i]) && (search_hh(commands, &str[i]) ||
 			search_ll(commands, &str[i])))
-				i++;
+			i++;
 		else if (is_it_size(str[i]))
 		{
 			tmp[0] = str[i];

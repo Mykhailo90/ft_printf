@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void write_precision(t_list *commands, char *str)
+void	write_precision(t_list *commands, char *str)
 {
 	int i;
 
@@ -25,7 +25,7 @@ void write_precision(t_list *commands, char *str)
 	commands->precision = ft_strncpy(commands->precision, &str[0], i);
 }
 
-void search_precision(t_list *commands, char *str)
+void	search_precision(t_list *commands, char *str)
 {
 	int i;
 

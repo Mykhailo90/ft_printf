@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+size_t			ft_strlen(const char *s)
 {
-	size_t count;
+	size_t		count;
 
 	count = 0;
 	while (*(s++) != '\0')
@@ -22,13 +22,12 @@ size_t	ft_strlen(const char *s)
 	return (count);
 }
 
-size_t	ft_strlen_U(const unsigned char *s)
+size_t			ft_strlen_uv(const unsigned char *s)
 {
-	size_t count;
+	size_t		count;
 
 	count = 0;
 	while (*(s++) != '\0')
 		count++;
 	return (count);
 }
-

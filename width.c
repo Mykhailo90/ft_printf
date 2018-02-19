@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-static void search_last_pos(t_list *com, char *str)
+static void		search_last_pos(t_list *com, char *str)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	while (ft_isdigit(str[i]))
@@ -25,9 +25,9 @@ static void search_last_pos(t_list *com, char *str)
 	com->width = ft_strncpy(com->width, &str[0], i);
 }
 
-void search_width(t_list *com, char *str)
+void			search_width(t_list *com, char *str)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	while (str[i] != '\0' && is_input_spec(str[i]) == -1)

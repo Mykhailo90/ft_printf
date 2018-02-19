@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flags.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/19 18:51:49 by msarapii          #+#    #+#             */
+/*   Updated: 2018/02/19 18:51:51 by msarapii         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int 	is_it_flags(char ch)
+int		is_it_flags(char ch)
 {
 	if (ch == ' ' || ch == '-' || ch == '+' || ch == '#')
 		return (1);
 	return (0);
 }
 
-int search_fl_n(char *str)
+int		search_fl_n(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0' && is_input_spec(str[i]) == -1)
@@ -24,9 +36,9 @@ int search_fl_n(char *str)
 	return (0);
 }
 
-int search_dif_fl(char *str, char x)
+int		search_dif_fl(char *str, char x)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0' && is_input_spec(str[i]) == -1)
@@ -38,9 +50,9 @@ int search_dif_fl(char *str, char x)
 	return (0);
 }
 
-void 	search_flags(t_list *commands, char *str)
+void	search_flags(t_list *commands, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	commands->flags = ft_memalloc(sizeof(char) * 6);

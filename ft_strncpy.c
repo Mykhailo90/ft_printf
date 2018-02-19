@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+char				*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	char	*res;
+	char			*res;
 
 	res = dest;
 	while (n && (*dest++ = *src++))
@@ -27,7 +27,8 @@ char	*ft_strncpy(char *dest, const char *src, size_t n)
 	return (res);
 }
 
-unsigned char	*ft_strncpy_U(unsigned char *dest, const unsigned char *src, size_t n)
+unsigned char		*ft_strncpy_uv(unsigned char *dest,
+									const unsigned char *src, size_t n)
 {
 	unsigned char	*res;
 

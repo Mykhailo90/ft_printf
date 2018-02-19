@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-char		*ft_strcat(char *dest, const char *src)
+char				*ft_strcat(char *dest, const char *src)
 {
-	size_t		i;
-	size_t		j;
-	char		*st;
+	size_t			i;
+	size_t			j;
+	char			*st;
 
 	i = 0;
 	j = 0;
@@ -33,11 +33,11 @@ char		*ft_strcat(char *dest, const char *src)
 	return (st);
 }
 
-unsigned char		*ft_strcat_U(unsigned char *dest, const unsigned char *src)
+unsigned char		*ft_strcat_uv(unsigned char *dest, const unsigned char *src)
 {
-	size_t		i;
-	size_t		j;
-	unsigned char		*st;
+	size_t			i;
+	size_t			j;
+	unsigned char	*st;
 
 	i = 0;
 	j = 0;
