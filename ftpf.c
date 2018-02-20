@@ -42,6 +42,7 @@ int					form_string(va_list argptr, t_list *com, char *str)
 	unsigned char	*res;
 	int				len;
 
+	res = NULL;
 	len = search_errors(com, str);
 	ch = com->specificator;
 	if (len)
@@ -55,7 +56,9 @@ int					form_string(va_list argptr, t_list *com, char *str)
 	else if (ch == '%')
 		res = (unsigned char *)prepare_str_ex(com);
 	else if (ch == 's' || ch == 'S')
+	{
 		res = (unsigned char *)search_sp_s(argptr, com, ch);
+	}
 	else if (ch == 'x' || ch == 'X' || ch == 'O' || ch == 'o')
 		res = (unsigned char *)search_sp_x(argptr, com, ch);
 	else if (ch == 'u')
@@ -97,9 +100,12 @@ int					ft_printf(char *str, ...)
 			while (is_input_spec(str[++i - 1]) == -1)
 				;
 		}
-		ft_putchar(str[i]);
-		i++;
-		res++;
+		if (str[i] != '\0')
+		{
+			ft_putchar(str[i]);
+			i++;
+			res++;
+		}		
 	}
 	va_end(argptr);
 	return (res);

@@ -19,8 +19,8 @@ int			main(void)
 	setlocale(LC_ALL, "");
 	i = 80;
 
-	   printf("%d", printf("%%\n"));
-	printf("%d", ft_printf("%%\n"));
+	ft_printf("111%30s333\n", NULL);
+	   printf("%d", printf("111%30s333", NULL));
 
 	return (0);
 }
