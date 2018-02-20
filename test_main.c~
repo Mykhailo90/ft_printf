@@ -1,0 +1,29 @@
+#include "ft_printf.h"
+
+int main(void)
+{
+	setlocale(LC_ALL, "");
+
+	wint_t i;
+	int n;
+	int x;
+	char ch = 'F';
+	char str[] = "TEST 012345 TEST";
+
+	i = 80;
+	n = -71;
+	wchar_t *wide = L"ПРОБУЕМ РУССКИЙ ЯЗЫК ();.,:";
+	wchar_t t = 945;
+	
+	//    printf("Eto idend D = %010d is N\n", i);
+	// ft_printf("Eto idend D = %010d is N\n", i);
+
+	//    printf("Eto idend D = %010d is N\n", n);
+	// ft_printf("Eto idend D = %010d is N\n", n);
+
+	
+	ft_printf("X= %010p\n", &i);
+	printf("X= %010p\n", &i);
+	return 0;
+}
+

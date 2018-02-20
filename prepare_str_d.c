@@ -75,13 +75,13 @@ char		*add_esp(char *str, t_list *com)
 char		*prepare_str(t_list *com, char *str)
 {
 	if (!com->precision && com->width &&
-		ft_atoi(com->width) > ft_strlen(str) &&
+		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
 		str = add_null_before(com, str);
-	if (com->precision && ft_atoi(com->precision) > ft_strlen(str))
+	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
 		str = add_null(com, str);
-	if (com->precision && com->width && ft_atoi(com->width) > ft_strlen(str) &&
-		!input_symb(com->flags, '-'))
+	if (com->precision && com->width && ft_atoi(com->width) >
+		(int)ft_strlen(str) && !input_symb(com->flags, '-'))
 		str = add_esp(str, com);
 	if (input_symb(com->flags, '+') && (ft_atoi(str) >= 0) &&
 		!input_symb(str, '+') && !input_symb(com->flags, '-'))
@@ -93,10 +93,10 @@ char		*prepare_str(t_list *com, char *str)
 		!input_symb(com->flags, '+'))
 		str = ft_strjoin(" ", str);
 	if (com->width && !input_symb(com->flags, '0') &&
-		(ft_atoi(com->width) > ft_strlen(str)))
+		(ft_atoi(com->width) > (int)ft_strlen(str)))
 		str = add_esp(str, com);
 	if (com->width && input_symb(com->flags, '-') &&
-		(ft_atoi(com->width) > ft_strlen(str)))
+		(ft_atoi(com->width) > (int)ft_strlen(str)))
 		str = add_esp(str, com);
 	return (str);
 }

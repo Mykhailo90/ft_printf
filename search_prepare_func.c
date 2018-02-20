@@ -39,15 +39,15 @@ char				*search_sp_d(va_list argptr, t_list *com)
 char				*prepare_str_c(t_list *com, char *str)
 {
 	if (com->width && !input_symb(com->flags, '0') &&
-		(ft_atoi(com->width) > ft_strlen(str)))
+		(ft_atoi(com->width) > (int)ft_strlen(str)))
 		str = add_esp_for_c(str, com);
 	else if (com->width && input_symb(com->flags, '0') &&
 		!input_symb(com->flags, '-') &&
-		ft_atoi(com->width) > ft_strlen(str))
+		ft_atoi(com->width) > (int)ft_strlen(str))
 		str = add_null_in_c(str, com);
 	else if (com->width && input_symb(com->flags, '0') &&
 		input_symb(com->flags, '-') &&
-		(ft_atoi(com->width) > ft_strlen(str)))
+		(ft_atoi(com->width) > (int)ft_strlen(str)))
 		str = add_esp_for_c_end(str, com);
 	return (str);
 }
@@ -70,7 +70,7 @@ unsigned char		*search_sp_c(va_list argptr, t_list *com, char s)
 		ch[0] = va_arg(argptr, wint_t);
 		ch[1] = '\0';
 		str = convert_in_str(ch);
-		return (prepare_str_C(com, str));
+		return (prepare_str_cv(com, str));
 	}
 	return ((unsigned char *)prepare_str_c(com, res_str));
 }
@@ -94,22 +94,22 @@ char				*prepare_str_s(t_list *com, char *res_str)
 	if (com->precision)
 		len = ft_atoi(com->precision);
 	res = NULL;
-	if (com->precision && len < ft_strlen(res_str))
+	if (com->precision && len < (int)ft_strlen(res_str))
 	{
 		res = ft_strnew(len);
 		ft_strncpy(res, res_str, len);
 		res_str = res;
 	}
 	if (com->width && !input_symb(com->flags, '0') &&
-		(ft_atoi(com->width) > ft_strlen(res_str)))
+		(ft_atoi(com->width) > (int)ft_strlen(res_str)))
 		res_str = add_esp_for_c(res_str, com);
 	else if (com->width && input_symb(com->flags, '0') &&
 		!input_symb(com->flags, '-') &&
-		ft_atoi(com->width) > ft_strlen(res_str))
+		ft_atoi(com->width) > (int)ft_strlen(res_str))
 		res_str = add_null_in_c(res_str, com);
 	else if (com->width && input_symb(com->flags, '0') &&
 		input_symb(com->flags, '-') &&
-		(ft_atoi(com->width) > ft_strlen(res_str)))
+		(ft_atoi(com->width) > (int)ft_strlen(res_str)))
 		res_str = add_esp_for_c_end(res_str, com);
 	return (res_str);
 }
