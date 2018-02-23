@@ -26,13 +26,52 @@ int					input_symb(char *str, char ch)
 	return (0);
 }
 
-char				*search_sp_p(va_list argptr, t_list *com, char ch)
+char					*prepare_str_p(t_list *com, char *str, char ch)
 {
-	char			*res_str;
 
+	if (com->precision && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
+	{
+		str = add_hesh(str, ch);
+		// free(str);
+		// return ("\0");
+	}
+
+	if (!com->precision && com->width &&
+		ft_atoi(com->width) > (int)ft_strlen(str) &&
+		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
+		str = add_null_before_xv(com, str, ch);
+	if (input_symb(com->flags, '#') && (ch == 'o' || ch == 'O'))
+		str = add_hesh_o(str);
+	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
+		str = add_null(com, str);
+	if (input_symb(com->flags, '#') && (ch == 'x' || ch == 'X') &&
+		(str[0] != '0' || str[1] != '\0'))
+	{
+		str = add_hesh(str, ch);
+	}
+	if (ch == 'p')
+		str = add_hesh(str, ch);
+	if (com->precision && com->width &&
+		ft_atoi(com->width) > (int)ft_strlen(str)
+		&& !input_symb(com->flags, '-'))
+		str = add_esp(str, com);
+	if (com->width && !input_symb(com->flags, '0') &&
+		(ft_atoi(com->width) > (int)ft_strlen(str)))
+		str = add_esp(str, com);
+	if (com->width && input_symb(com->flags, '-') &&
+		(ft_atoi(com->width) > (int)ft_strlen(str)))
+		str = add_esp(str, com);
+	return (str);
+}
+
+
+char				*search_sp_p(unsigned long int tmp, t_list *com, char ch)
+{
+	char				*res_str;
+	
 	res_str = NULL;
-	res_str = ft_itoa_base(va_arg(argptr, unsigned long int), ch);
-	return (prepare_str_x(com, res_str, ch));
+	res_str = ft_itoa_base(tmp, ch);
+	return (prepare_str_p(com, res_str, ch));
 }
 
 int					size_wt(wchar_t *tmp)

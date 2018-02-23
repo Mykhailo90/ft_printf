@@ -21,6 +21,10 @@ char			*add_hesh(char *res, char ch)
 	tmp[0] = '0';
 	tmp[2] = '\0';
 	tmp[1] = (ch == 'x' || ch == 'p') ? 'x' : 'X';
+	if (ch == 'p' && res[0] == '0' && res[1] == '\0'){
+		free(for_del);
+		return ("0x");
+	}
 	res = ft_strjoin(tmp, res);
 	free(for_del);
 	return (res);

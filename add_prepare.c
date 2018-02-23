@@ -16,8 +16,7 @@ char					*prepare_str_x(t_list *com, char *str, char ch)
 {
 	if (com->precision && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
 	{
-		free(str);
-		return ("\0");
+		str = add_hesh(str, ch);
 	}
 	if (!com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&

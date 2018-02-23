@@ -117,7 +117,7 @@ char				*add_null_before_xv(t_list *com, char *str, char ch);
 char				*add_hesh(char *res, char ch);
 unsigned char		*add_esp_for_cv(unsigned char *str, t_list *com);
 unsigned char		*add_null_in_cv(unsigned char *str, t_list *com);
-char				*search_sp_p(va_list argptr, t_list *com, char ch);
+char				*search_sp_p(unsigned long int tmp, t_list *com, char ch);
 int					form_string(va_list argptr, t_list *com, char *str);
 void				read_com_str(t_list *com, char *str);
 char				*search_errors(t_list *com, char *str);
@@ -125,4 +125,5 @@ int					ft_printf(char *str, ...);
 int					ft_is_it_space(char ch);
 char				*ft_itoa_u(unsigned long long n);
 char				*prepare_str_u(t_list *com, char *str);
+char				*prepare_str_p(t_list *com, char *str, char ch);
 #endif

@@ -65,12 +65,13 @@ char				*search_errors(t_list *com, char *str)
 	return (res_str);
 }
 
-int					form_string(va_list argptr, t_list *com, char *str)
+int						form_string(va_list argptr, t_list *com, char *str)
 {
-	char			ch;
-	unsigned char	*res;
-	int				len;
-	long			tmp;
+	char				ch;
+	unsigned char		*res;
+	int					len;
+	long				tmp;
+	unsigned long int 	tp;
 
 	res = NULL;
 	res = (unsigned char *)search_errors(com, str);
@@ -110,7 +111,8 @@ int					form_string(va_list argptr, t_list *com, char *str)
 		res = (unsigned char *)search_sp_u(argptr, com);
 	else if (ch == 'p')
 	{
-		res = (unsigned char *)search_sp_p(argptr, com, ch);
+		tp = va_arg(argptr, unsigned long int);
+		res = (unsigned char *)search_sp_p(tp, com, ch);
 	}
 	len = (int)ft_strlen_uv(res);
 	if (com->error != 6 && ch == 'c' && tmp == 0 && com->width)
