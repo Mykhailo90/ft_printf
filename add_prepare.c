@@ -14,6 +14,11 @@
 
 char					*prepare_str_x(t_list *com, char *str, char ch)
 {
+	if (com->precision && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
+	{
+		free(str);
+		return ("\0");
+	}
 	if (!com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
@@ -22,8 +27,11 @@ char					*prepare_str_x(t_list *com, char *str, char ch)
 		str = add_hesh_o(str);
 	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
 		str = add_null(com, str);
-	if (input_symb(com->flags, '#') && (ch == 'x' || ch == 'X'))
+	if (input_symb(com->flags, '#') && (ch == 'x' || ch == 'X') &&
+		(str[0] != '0' || str[1] != '\0'))
+	{
 		str = add_hesh(str, ch);
+	}
 	if (ch == 'p')
 		str = add_hesh(str, ch);
 	if (com->precision && com->width &&
@@ -101,12 +109,19 @@ char					*add_esp_for_c(char *str, t_list *com)
 	int					width;
 	char				*tmp;
 	int					i;
+	int 				flag;
 
 	i = 0;
 	len_ch = ft_strlen(str);
+	if (str[0] == 0)
+		len_ch = 1;
 	width = ft_atoi(com->width);
-	tmp = ft_strnew(width - len_ch);
-	while (i < (width - len_ch))
+	flag = width - len_ch;
+	tmp = (com->precision && ft_atoi(com->precision) == 0) ?
+	ft_strnew(width - len_ch + 1) : ft_strnew(width - len_ch);
+	if (com->precision && ft_atoi(com->precision) == 0)
+		flag++;
+	while (i < flag)
 		tmp[i++] = ' ';
 	str = (input_symb(com->flags, '-')) ?
 		ft_strjoin(str, tmp) : ft_strjoin(tmp, str);

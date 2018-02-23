@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_u.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/18 06:29:19 by msarapii          #+#    #+#             */
-/*   Updated: 2017/11/21 18:13:02 by msarapii         ###   ########.fr       */
+/*   Created: 2018/02/22 11:35:50 by msarapii          #+#    #+#             */
+/*   Updated: 2018/02/22 11:35:52 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t		count_symbols(long long n)
+static size_t			count_symbols_u(unsigned long long n)
 {
-	size_t			i;
+	size_t				i;
 
 	i = 0;
 	if (n == 0)
@@ -27,20 +27,10 @@ static size_t		count_symbols(long long n)
 	return (i);
 }
 
-static void			input_symbols(char *res, long long n, size_t len)
+static void				input_symbols_u(char *res, unsigned long long n, size_t len)
 {
-	if (n < 0)
-	{
-		res[0] = '-';
-		res[len + 1] = '\0';
-		res = res + len;
-		n *= -1;
-	}
-	else
-	{
-		res[len] = '\0';
-		res = res + len - 1;
-	}
+	res[len] = '\0';
+	res = res + len - 1;
 	while (len--)
 	{
 		*(res--) = ('0' + n % 10);
@@ -48,23 +38,18 @@ static void			input_symbols(char *res, long long n, size_t len)
 	}
 }
 
-char				*ft_itoa(long long n)
+char					*ft_itoa_u(unsigned long long n)
 {
-	char			*res;
-	size_t			len;
-	char			*start;
-	long long		num;
+	char				*res;
+	size_t				len;
+	char				*start;
+	unsigned long long	num;
 
 	num = n;
-	len = count_symbols(num);
-	res = NULL;
-	if (n == -9223372036854775807 - 1)
-		return ("-9223372036854775808");
-	if (num < 0 && (!(res = ft_memalloc(sizeof(char) * len + 2))))
-		return (NULL);
-	if (num >= 0 && (!(res = ft_memalloc(sizeof(char) * len + 1))))
+	len = count_symbols_u(num);
+	if (!(res = ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
 	start = res;
-	input_symbols(start, num, len);
+	input_symbols_u(start, num, len);
 	return (start);
 }

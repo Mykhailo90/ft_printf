@@ -47,6 +47,8 @@ char		*add_null_before(t_list *com, char *str)
 		help.n = help.n - help.i;
 		help.i = 0;
 	}
+	if (input_symb(com->flags, ' '))
+		help.n = help.n - 1;
 	full_n(help.tmp, help.i, help.n);
 	str = ft_strjoin(help.tmp, str);
 	free(help.tmp);
@@ -74,6 +76,11 @@ char		*add_esp(char *str, t_list *com)
 
 char		*prepare_str(t_list *com, char *str)
 {
+	if (com->precision && ft_atoi(com->precision) == 0)
+	{
+		free(str);
+		return ("\0");
+	}
 	if (!com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))

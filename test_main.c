@@ -9,18 +9,23 @@
 /*   Updated: 2018/02/20 13:45:04 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <limits.h>
 #include "ft_printf.h"
 
 int			main(void)
 {
-	int		i;
+	long long		i;
 
 	setlocale(LC_ALL, "");
-	i = 80;
+	i = LONG_MAX;
+	char txt[10];
+	long long rt = 0x10fd13ae0;
 
-	ft_printf("111%30s333\n", NULL);
-	   printf("%d", printf("111%30s333", NULL));
+   printf("{%3c}\n", 0);
 
+   
+ 	ft_printf("{%3c}\n", 0);
+	  
+	//printf("%d", printf("%.0d", 0));
 	return (0);
 }

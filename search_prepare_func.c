@@ -52,7 +52,7 @@ char				*prepare_str_c(t_list *com, char *str)
 	return (str);
 }
 
-unsigned char		*search_sp_c(va_list argptr, t_list *com, char s)
+unsigned char		*search_sp_c(long n, t_list *com, char s)
 {
 	char			*res_str;
 	unsigned char	*str;
@@ -63,16 +63,13 @@ unsigned char		*search_sp_c(va_list argptr, t_list *com, char s)
 	if (com->size == NULL && s != 'C')
 	{
 		res_str = ft_strnew(1);
-		res_str[0] = va_arg(argptr, int);
+		res_str[0] = (char)n;
 	}
 	else if (s == 'C' || input_symb(com->size, 'l'))
 	{
-		// if (!ft_mb_cur_max(data))
-  //  		{
-  //       	write(1, &nb, 1);
-  //       	return ;
-  //   	}
-		ch[0] = va_arg(argptr, wint_t);
+		if (n == 0)
+			write(1, "\0", 1);
+		ch[0] = n;
 		ch[1] = '\0';
 		str = convert_in_str(ch);
 		return (prepare_str_cv(com, str));
@@ -95,37 +92,34 @@ char				*prepare_str_s(t_list *com, char *res_str)
 {
 	char			*res;
 	int				len;
+	char			nn[] = "(null)";
 
-	
+	res = NULL;
+	if (res_str == NULL)
+		res_str = nn;
 	if (com->precision)
 		len = ft_atoi(com->precision);
-	res = NULL;
 	if (com->precision && len < (int)ft_strlen(res_str))
 	{
 		res = ft_strnew(len);
 		ft_strncpy(res, res_str, len);
 		res_str = res;
 	}
-printf("%s\n", "t0");
 	if (com->width && !input_symb(com->flags, '0') &&
 		(ft_atoi(com->width) > (int)ft_strlen(res_str)))
 	{
-		printf("%s\n", "t1");
 		res_str = add_esp_for_c(res_str, com);
 	}
 	else if (com->width && input_symb(com->flags, '0') &&
 		!input_symb(com->flags, '-') &&
 		ft_atoi(com->width) > (int)ft_strlen(res_str))
 	{
-		printf("%s\n", "t2");
 		res_str = add_null_in_c(res_str, com);
 	}
 	else if (com->width && input_symb(com->flags, '0') &&
 		input_symb(com->flags, '-') &&
 		(ft_atoi(com->width) > (int)ft_strlen(res_str)))
 	{
-		printf("%s\n", "t3");
 		res_str = add_esp_for_c_end(res_str, com);}
-printf("%s\n", "t4");
 	return (res_str);
 }

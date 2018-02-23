@@ -25,6 +25,7 @@
 
 typedef struct		s_list
 {
+	int				error;
 	char			*flags;
 	char			*width;
 	char			*precision;
@@ -91,7 +92,7 @@ unsigned char		*convert_in_str(wchar_t *tmp);
 char				*prepare_str_s(t_list *com, char *res_str);
 char				*add_hesh_o(char *res);
 char				*search_sp_d(va_list argptr, t_list *com);
-unsigned char		*search_sp_c(va_list argptr, t_list *com, char s);
+unsigned char		*search_sp_c(long n, t_list *com, char s);
 char				*prepare_str_ex(t_list *com);
 void				set_list_null(t_list *com);
 int					size_wt(wchar_t *tmp);
@@ -102,7 +103,7 @@ char				*add_esp_for_c_end(char *str, t_list *com);
 unsigned char		*prepare_str_cv(t_list *com, unsigned char *str);
 void				func_help1(wchar_t *tmp, unsigned char *res,
 								int len);
-char				*search_sp_dv(va_list argptr, t_list *com);
+char				*search_sp_dv(va_list argptr, t_list *com, char ch);
 unsigned char		*search_sp_s(va_list argptr, t_list *com, char ch);
 char				*search_sp_uv(va_list argptr, t_list *com);
 unsigned char		*search_sp_x(va_list argptr, t_list *com, char ch);
@@ -119,7 +120,9 @@ unsigned char		*add_null_in_cv(unsigned char *str, t_list *com);
 char				*search_sp_p(va_list argptr, t_list *com, char ch);
 int					form_string(va_list argptr, t_list *com, char *str);
 void				read_com_str(t_list *com, char *str);
-int					search_errors(t_list *com, char *str);
+char				*search_errors(t_list *com, char *str);
 int					ft_printf(char *str, ...);
 int					ft_is_it_space(char ch);
+char				*ft_itoa_u(unsigned long long n);
+char				*prepare_str_u(t_list *com, char *str);
 #endif

@@ -70,6 +70,8 @@ char		*add_null_in_c(char *str, t_list *com)
 
 	i = 0;
 	len_ch = ft_strlen(str);
+	if (str[0] == 0)
+		len_ch = 1;
 	w = ft_atoi(com->width);
 	tmp = ft_strnew(w - len_ch);
 	while (i < (w - len_ch))
@@ -87,7 +89,8 @@ char		*add_hesh_o(char *res)
 	for_del = res;
 	tmp[0] = '0';
 	tmp[1] = '\0';
-	res = ft_strjoin(tmp, res);
+	if (res[0] != '0')
+		res = ft_strjoin(tmp, res);
 	free(for_del);
 	return (res);
 }

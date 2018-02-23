@@ -27,7 +27,10 @@ size_t			ft_strlen_uv(const unsigned char *s)
 	size_t		count;
 
 	count = 0;
-	while (*(s++) != '\0')
+	while (s[count] != '\0')
+	{
 		count++;
+	}
+
 	return (count);
 }
