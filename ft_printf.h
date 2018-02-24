@@ -106,7 +106,7 @@ void				func_help1(wchar_t *tmp, unsigned char *res,
 char				*search_sp_dv(va_list argptr, t_list *com, char ch);
 unsigned char		*search_sp_s(va_list argptr, t_list *com, char ch);
 char				*search_sp_uv(va_list argptr, t_list *com);
-unsigned char		*search_sp_x(va_list argptr, t_list *com, char ch);
+unsigned char		*search_sp_x(unsigned long long n, t_list *com, char ch);
 char				*search_sp_u(va_list argptr, t_list *com);
 unsigned char		*search_wt_str(va_list argptr, t_list *com);
 char				*ft_itoa_base(unsigned long long number, char ch);
@@ -114,7 +114,7 @@ char				*prepare_str_x(t_list *com, char *str, char ch);
 unsigned char		*prepare_str_sv(t_list *com, unsigned char *res_str);
 char				*add_null_xv(t_list *com, char *str);
 char				*add_null_before_xv(t_list *com, char *str, char ch);
-char				*add_hesh(char *res, char ch);
+char				*add_hesh(t_list *com, char *res, char ch);
 unsigned char		*add_esp_for_cv(unsigned char *str, t_list *com);
 unsigned char		*add_null_in_cv(unsigned char *str, t_list *com);
 char				*search_sp_p(unsigned long int tmp, t_list *com, char ch);
@@ -126,4 +126,8 @@ int					ft_is_it_space(char ch);
 char				*ft_itoa_u(unsigned long long n);
 char				*prepare_str_u(t_list *com, char *str);
 char				*prepare_str_p(t_list *com, char *str, char ch);
+char				*add_null_after(t_list *com, char *str);
+char 				*add_null_after_pr(t_list *com, char *str);
+char 				*add_null_in_s(char *res_str, t_list *com);
+char				*prepare_str_c(t_list *com, char *str);
 #endif

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char			*add_hesh(char *res, char ch)
+char			*add_hesh(t_list *com, char *res, char ch)
 {
 	char		*for_del;
 	char		tmp[3];
@@ -21,7 +21,9 @@ char			*add_hesh(char *res, char ch)
 	tmp[0] = '0';
 	tmp[2] = '\0';
 	tmp[1] = (ch == 'x' || ch == 'p') ? 'x' : 'X';
-	if (ch == 'p' && res[0] == '0' && res[1] == '\0'){
+	if (ch == 'p' && res[0] == '0' && res[1] == '\0' &&
+		com->precision && ft_atoi(com->precision) == 0)
+	{
 		free(for_del);
 		return ("0x");
 	}

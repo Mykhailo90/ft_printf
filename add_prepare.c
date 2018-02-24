@@ -16,7 +16,7 @@ char					*prepare_str_x(t_list *com, char *str, char ch)
 {
 	if (com->precision && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
 	{
-		str = add_hesh(str, ch);
+		str = add_hesh(com, str, ch);
 	}
 	if (!com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
@@ -29,10 +29,10 @@ char					*prepare_str_x(t_list *com, char *str, char ch)
 	if (input_symb(com->flags, '#') && (ch == 'x' || ch == 'X') &&
 		(str[0] != '0' || str[1] != '\0'))
 	{
-		str = add_hesh(str, ch);
+		str = add_hesh(com, str, ch);
 	}
 	if (ch == 'p')
-		str = add_hesh(str, ch);
+		str = add_hesh(com, str, ch);
 	if (com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str)
 		&& !input_symb(com->flags, '-'))

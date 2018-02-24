@@ -83,26 +83,51 @@ char				*prepare_str_ex(t_list *com)
 
 	res_str = ft_strnew(1);
 	res_str[0] = '%';
-	if (com->width && ft_atoi(com->width) > 1)
+	if (com->width && ft_atoi(com->width) > 1 && !input_symb(com->flags, '0'))
 		res_str = add_esp(res_str, com);
+	if (com->width && ft_atoi(com->width) > 1 && input_symb(com->flags, '0'))
+		res_str = add_null_in_s(res_str, com);
+	return (res_str);
+}
+
+char 				*add_null_in_s(char *res_str, t_list *com)
+{
+	int			len_ch;
+	int			w;
+	char		*tmp;
+	int			i;
+	char		*del;
+
+	i = 0;
+	del = res_str;
+	len_ch = (int)ft_strlen(res_str);
+	w = ft_atoi(com->width);
+	i = (!res_str) ? w : (w - len_ch);
+	tmp = ft_strnew(i);
+	w = 0;
+	while (w < i)
+		tmp[w++] = '0';
+	res_str = ft_strjoin(tmp, res_str);
+	free(tmp);
 	return (res_str);
 }
 
 char				*prepare_str_s(t_list *com, char *res_str)
 {
 	char			*res;
-	int				len;
 	char			nn[] = "(null)";
+	char			n[] = "\0";
 
-	res = NULL;
-	if (res_str == NULL)
-		res_str = nn;
-	if (com->precision)
-		len = ft_atoi(com->precision);
-	if (com->precision && len < (int)ft_strlen(res_str))
+	if (res_str == NULL && com->precision && ft_atoi(com->precision) == 0)
 	{
-		res = ft_strnew(len);
-		ft_strncpy(res, res_str, len);
+		res_str = n;
+	}
+	else if (res_str == NULL)
+		res_str = nn;
+	if (com->precision && ft_atoi(com->precision) < (int)ft_strlen(res_str))
+	{
+		res = ft_strnew(ft_atoi(com->precision));
+		ft_strncpy(res, res_str, ft_atoi(com->precision));
 		res_str = res;
 	}
 	if (com->width && !input_symb(com->flags, '0') &&
@@ -114,7 +139,7 @@ char				*prepare_str_s(t_list *com, char *res_str)
 		!input_symb(com->flags, '-') &&
 		ft_atoi(com->width) > (int)ft_strlen(res_str))
 	{
-		res_str = add_null_in_c(res_str, com);
+		res_str = add_null_in_s(res_str, com);
 	}
 	else if (com->width && input_symb(com->flags, '0') &&
 		input_symb(com->flags, '-') &&
@@ -123,3 +148,32 @@ char				*prepare_str_s(t_list *com, char *res_str)
 		res_str = add_esp_for_c_end(res_str, com);}
 	return (res_str);
 }
+
+unsigned char		*search_sp_s(va_list argptr, t_list *com, char ch)
+{
+	char			*res_str;
+	unsigned char	*res;
+
+	res_str = NULL;
+	res = NULL;
+	if (com->size == NULL && ch != 'S')
+	{
+		res_str = va_arg(argptr, char *);
+	//	printf("!!!%s\n", va_arg(argptr, char *));
+	}
+	else if (ch == 'S' || (com->size && input_symb(com->size, 'l')))
+	{
+		res = search_wt_str(argptr, com);
+		return (prepare_str_sv(com, res));
+	}
+	return ((unsigned char *)prepare_str_s(com, res_str));
+}
+
+
+
+
+
+
+
+
+

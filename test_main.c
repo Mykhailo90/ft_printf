@@ -21,10 +21,10 @@ int			main(void)
 	char txt[10];
 	long long rt = 0x10fd13ae0;
 
-   printf("%d", printf("%.0p, %.p\n", 0, 0));
+   printf("%d", printf("%015u\n", 4294967295));
 
    
- 	printf("%d", ft_printf("%.0p, %.p\n", 0, 0));
+ 	printf("%d", ft_printf("%015u\n", 4294967295));
 	  
 	//printf("%d", printf("%.0d", 0));
 	return (0);

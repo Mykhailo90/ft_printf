@@ -57,30 +57,11 @@ char				*search_sp_uv(va_list argptr, t_list *com)
 	return (prepare_str(com, res_str));
 }
 
-unsigned char		*search_sp_s(va_list argptr, t_list *com, char ch)
+unsigned char		*search_sp_x(unsigned long long n, t_list *com, char ch)
 {
 	char			*res_str;
-	unsigned char	*res;
 
 	res_str = NULL;
-	res = NULL;
-	if (com->size == NULL && ch != 'S')
-		res_str = va_arg(argptr, char *);
-	else if (ch == 'S' || (com->size && input_symb(com->size, 'l')))
-	{
-		res = search_wt_str(argptr, com);
-		return (prepare_str_sv(com, res));
-	}
-	return ((unsigned char *)prepare_str_s(com, res_str));
-}
-
-unsigned char		*search_sp_x(va_list argptr, t_list *com, char ch)
-{
-	char			*res_str;
-	unsigned long long n;
-
-	res_str = NULL;
-	n = va_arg(argptr, unsigned long long);
 	if (ch == 'O')
 		res_str = ft_itoa_base(n, ch);
 	else if (com->size == NULL)

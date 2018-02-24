@@ -45,7 +45,7 @@ char				*search_errors(t_list *com, char *str)
 			tmp = i;
 			res_str = ft_strnew(1);
 			res_str[0] = str[i++];
-			res_str = prepare_str_s(com, res_str);
+			res_str = prepare_str_c(com, res_str);
 			fdel = prep_part2(str, &i);
 			res_str = ft_strjoin(res_str, fdel);
 			free(fdel);
@@ -71,7 +71,7 @@ int						form_string(va_list argptr, t_list *com, char *str)
 	unsigned char		*res;
 	int					len;
 	long				tmp;
-	unsigned long int 	tp;
+	unsigned long long 	tp;
 
 	res = NULL;
 	res = (unsigned char *)search_errors(com, str);
@@ -106,12 +106,24 @@ int						form_string(va_list argptr, t_list *com, char *str)
 		res = (unsigned char *)search_sp_s(argptr, com, ch);
 	}
 	else if (ch == 'x' || ch == 'X' || ch == 'O' || ch == 'o')
-		res = (unsigned char *)search_sp_x(argptr, com, ch);
+	{
+		tp = va_arg(argptr, unsigned long long);
+		res = (unsigned char *)search_sp_x(tp, com, ch);
+		printf("!!!%s\n", res);
+		if (tp == 0 && com->precision && !com->width && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
+			return (0);
+		else if (tp == 0 && com->precision && com->width && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
+			{
+				res = (unsigned char *)prepare_str_s(com, "0");
+			}
+		if (ch == 'x' && tp == 0 && com->precision && ft_atoi(com->precision) == 0)
+			return (0);
+	}
 	else if (ch == 'u')
 		res = (unsigned char *)search_sp_u(argptr, com);
 	else if (ch == 'p')
 	{
-		tp = va_arg(argptr, unsigned long int);
+		tp = (unsigned long long)va_arg(argptr, unsigned long int);
 		res = (unsigned char *)search_sp_p(tp, com, ch);
 	}
 	len = (int)ft_strlen_uv(res);

@@ -26,31 +26,50 @@ int					input_symb(char *str, char ch)
 	return (0);
 }
 
+char 					*add_null_after_w(t_list *com, char *str)
+{
+	char	*tmp;
+	char	*del;
+	int 	len;
+
+	del = str;
+	len = ft_atoi(com->width) - (int)ft_strlen(str);
+	tmp = ft_strnew(len);
+	full_n(tmp, 0, len);
+	str = ft_strjoin(str, tmp);
+	free(del);
+	free(tmp);
+	return (str);
+}
+
+char 					*add_null_before_pr(t_list *com, char *str)
+{
+	char	*tmp;
+	char	*del;
+	int 	len;
+
+	del = str;
+	len = ft_atoi(com->precision) - (int)ft_strlen(str);
+	tmp = ft_strnew(len);
+	full_n(tmp, 0, len);
+	str = ft_strjoin(tmp, str);
+	free(del);
+	free(tmp);
+	return (str);
+}
+
 char					*prepare_str_p(t_list *com, char *str, char ch)
 {
-
-	if (com->precision && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
-	{
-		str = add_hesh(str, ch);
-		// free(str);
-		// return ("\0");
-	}
-
+	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
+		str = add_null_before_pr(com, str);
+	str = add_hesh(com, str, ch);
 	if (!com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
-		str = add_null_before_xv(com, str, ch);
-	if (input_symb(com->flags, '#') && (ch == 'o' || ch == 'O'))
-		str = add_hesh_o(str);
-	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
-		str = add_null(com, str);
-	if (input_symb(com->flags, '#') && (ch == 'x' || ch == 'X') &&
-		(str[0] != '0' || str[1] != '\0'))
 	{
-		str = add_hesh(str, ch);
+		str = add_null_after_w(com, str);
 	}
-	if (ch == 'p')
-		str = add_hesh(str, ch);
+	
 	if (com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str)
 		&& !input_symb(com->flags, '-'))
