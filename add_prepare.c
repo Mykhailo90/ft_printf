@@ -102,6 +102,32 @@ unsigned char			*prepare_str_cv(t_list *com, unsigned char *str)
 	return (str);
 }
 
+// char					*add_esp_for_c(char *str, t_list *com)
+// {
+// 	int					len_ch;
+// 	int					width;
+// 	char				*tmp;
+// 	int					i;
+// 	int 				flag;
+
+// 	i = 0;
+// 	len_ch = ft_strlen(str);
+// 	// if (str[0] == 0)
+// 	// 	len_ch = 1;
+// 	width = ft_atoi(com->width);
+// 	flag = width - len_ch;
+// 	tmp = (com->precision && ft_atoi(com->precision) == 0) ?
+// 	ft_strnew(width - len_ch + 1) : ft_strnew(width - len_ch);
+// 	if (com->precision && ft_atoi(com->precision) == 0)
+// 		flag++;
+// 	while (i < flag)
+// 		tmp[i++] = ' ';
+// 	str = (input_symb(com->flags, '-')) ?
+// 		ft_strjoin(str, tmp) : ft_strjoin(tmp, str);
+// 	free(tmp);
+// 	return (str);
+// }
+
 char					*add_esp_for_c(char *str, t_list *com)
 {
 	int					len_ch;
@@ -112,13 +138,12 @@ char					*add_esp_for_c(char *str, t_list *com)
 
 	i = 0;
 	len_ch = ft_strlen(str);
-	if (str[0] == 0)
-		len_ch = 1;
+	if (str[0] == 0 && com->specificator == 'c')
+ 		len_ch = 1;
 	width = ft_atoi(com->width);
 	flag = width - len_ch;
-	tmp = (com->precision && ft_atoi(com->precision) == 0) ?
-	ft_strnew(width - len_ch + 1) : ft_strnew(width - len_ch);
-	if (com->precision && ft_atoi(com->precision) == 0)
+	tmp = ft_strnew(width - len_ch);
+	if (com->precision && ft_atoi(com->precision) == 0 && !com->width)
 		flag++;
 	while (i < flag)
 		tmp[i++] = ' ';

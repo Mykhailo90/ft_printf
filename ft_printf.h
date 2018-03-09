@@ -130,4 +130,5 @@ char				*add_null_after(t_list *com, char *str);
 char 				*add_null_after_pr(t_list *com, char *str);
 char 				*add_null_in_s(char *res_str, t_list *com);
 char				*prepare_str_c(t_list *com, char *str);
+char				*add_null_before_u(t_list *com, char *str);
 #endif

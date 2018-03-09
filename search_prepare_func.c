@@ -63,7 +63,7 @@ unsigned char		*search_sp_c(long n, t_list *com, char s)
 	if (com->size == NULL && s != 'C')
 	{
 		res_str = ft_strnew(1);
-		res_str[0] = (char)n;
+		res_str[0] = (n != 0) ? (char)n : '\0';
 	}
 	else if (s == 'C' || input_symb(com->size, 'l'))
 	{
@@ -115,7 +115,7 @@ char 				*add_null_in_s(char *res_str, t_list *com)
 char				*prepare_str_s(t_list *com, char *res_str)
 {
 	char			*res;
-	char			nn[] = "(null)";
+	char			*nn = "(null)";
 	char			n[] = "\0";
 
 	if (res_str == NULL && com->precision && ft_atoi(com->precision) == 0)
@@ -123,7 +123,9 @@ char				*prepare_str_s(t_list *com, char *res_str)
 		res_str = n;
 	}
 	else if (res_str == NULL)
+	{
 		res_str = nn;
+	}
 	if (com->precision && ft_atoi(com->precision) < (int)ft_strlen(res_str))
 	{
 		res = ft_strnew(ft_atoi(com->precision));
@@ -145,7 +147,8 @@ char				*prepare_str_s(t_list *com, char *res_str)
 		input_symb(com->flags, '-') &&
 		(ft_atoi(com->width) > (int)ft_strlen(res_str)))
 	{
-		res_str = add_esp_for_c_end(res_str, com);}
+		res_str = add_esp_for_c_end(res_str, com);
+	}
 	return (res_str);
 }
 
@@ -159,7 +162,6 @@ unsigned char		*search_sp_s(va_list argptr, t_list *com, char ch)
 	if (com->size == NULL && ch != 'S')
 	{
 		res_str = va_arg(argptr, char *);
-	//	printf("!!!%s\n", va_arg(argptr, char *));
 	}
 	else if (ch == 'S' || (com->size && input_symb(com->size, 'l')))
 	{

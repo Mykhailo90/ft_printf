@@ -82,41 +82,42 @@ int						form_string(va_list argptr, t_list *com, char *str)
 		res = (unsigned char *)search_sp_d(argptr, com);
 	else if (ch == 'D' || ch == 'U')
 		res = (unsigned char *)search_sp_dv(argptr, com, ch);
-	else if ((ch == 'c' || ch == 'C') && MB_CUR_MAX != 1)
+	else if ((ch == 'C') && MB_CUR_MAX == 1)
+    {
+    	com->error = 6;
+    	
+    	return (-1);
+    }
+	else if ((ch == 'c' || ch == 'C'))
 	{
 		tmp = (ch == 'c') ? (long)va_arg(argptr, int) :
 							(long)va_arg(argptr, wint_t);
 		res = (unsigned char *)search_sp_c(tmp, com, ch);
 		if (tmp == 0 && !com->width)
+//		if (tmp == 0)
 		{
 			write(1, "\0", 1);
 			ft_putstr(res);
 			return (1);
 		}
 	}
-	else if ((ch == 'c' || ch == 'C') && MB_CUR_MAX == 1)
-    {
-    	com->error = 6;
-    	return (-1);
-    }
 	else if (ch == '%')
 		res = (unsigned char *)prepare_str_ex(com);
 	else if (ch == 's' || ch == 'S')
 	{
-		res = (unsigned char *)search_sp_s(argptr, com, ch);
+		res = search_sp_s(argptr, com, ch);
 	}
 	else if (ch == 'x' || ch == 'X' || ch == 'O' || ch == 'o')
 	{
 		tp = va_arg(argptr, unsigned long long);
 		res = (unsigned char *)search_sp_x(tp, com, ch);
-		printf("!!!%s\n", res);
 		if (tp == 0 && com->precision && !com->width && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
 			return (0);
 		else if (tp == 0 && com->precision && com->width && ft_atoi(com->precision) == 0 && !input_symb(com->flags, '#'))
 			{
 				res = (unsigned char *)prepare_str_s(com, "0");
 			}
-		if (ch == 'x' && tp == 0 && com->precision && ft_atoi(com->precision) == 0)
+		if (ch == 'x' && tp == 0 && com->precision && ft_atoi(com->precision) == 0 && !com->width)
 			return (0);
 	}
 	else if (ch == 'u')
@@ -134,7 +135,9 @@ int						form_string(va_list argptr, t_list *com, char *str)
 		len += 1;
 	}
 	else if (com->error != 6)
+	{
 		ft_putstr(res);
+	}
 	return (len);
 }
 

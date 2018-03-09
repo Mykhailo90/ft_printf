@@ -93,7 +93,7 @@ char		*prepare_str_u(t_list *com, char *str)
 	if (!com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
-		str = add_null_before(com, str);
+		str = add_null_before_u(com, str);
 	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
 		str = add_null(com, str);
 	if (com->precision && com->width && ft_atoi(com->width) >
@@ -131,3 +131,9 @@ char				*search_sp_u(va_list argptr, t_list *com)
 		res_str = ft_itoa((unsigned char)va_arg(argptr, int));
 	return (prepare_str_u(com, res_str));
 }
+
+
+
+
+
+

@@ -55,6 +55,31 @@ char		*add_null_before(t_list *com, char *str)
 	return (str);
 }
 
+char		*add_null_before_u(t_list *com, char *str)
+{
+	t_help	help;
+
+	help.number = ft_atoi(str);
+	help.i = ft_strlen(str);
+	if (com->width)
+		help.n = ft_atoi(com->width);
+	help.tmp = (input_symb(com->flags, '+')) ?
+		ft_strnew(help.n - help.i + 2) : ft_strnew(help.n - help.i);
+	if (input_symb(com->flags, '+'))
+		help_func(str, &help, com);
+	else
+	{
+		help.n = help.n - help.i;
+		help.i = 0;
+	}
+	if (input_symb(com->flags, ' '))
+		help.n = help.n - 1;
+	full_n(help.tmp, help.i, help.n);
+	str = ft_strjoin(help.tmp, str);
+	free(help.tmp);
+	return (str);
+}
+
 char		*add_esp(char *str, t_list *com)
 {
 	int		len_numb;
@@ -63,7 +88,7 @@ char		*add_esp(char *str, t_list *com)
 	int		i;
 
 	i = 0;
-	len_numb = ft_strlen(str);
+	len_numb = (int)ft_strlen(str);
 	width = ft_atoi(com->width);
 	tmp = ft_strnew(width - len_numb);
 	while (i < (width - len_numb))
@@ -76,17 +101,28 @@ char		*add_esp(char *str, t_list *com)
 
 char		*prepare_str(t_list *com, char *str)
 {
-	if (com->precision && ft_atoi(com->precision) == 0)
+	if (!com->width && com->precision && ft_atoi(com->precision) == 0 && ft_atoi(str) == 0)
 	{
 		free(str);
 		return ("\0");
+	}
+	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str) && ft_atoi(str) >= 0)
+	{
+		str = add_null(com, str);
+	}
+	if (com->precision && ft_atoi(com->precision) >= (int)ft_strlen(str) && ft_atoi(str) < 0)
+	{
+		str = add_null(com, str);
+	}
+	if (com->width && com->precision && ft_atoi(com->precision) == 0)
+	{
+		str = add_esp("\0", com);
+		return (str);
 	}
 	if (!com->precision && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
 		str = add_null_before(com, str);
-	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
-		str = add_null(com, str);
 	if (com->precision && com->width && ft_atoi(com->width) >
 		(int)ft_strlen(str) && !input_symb(com->flags, '-'))
 		str = add_esp(str, com);
@@ -97,8 +133,13 @@ char		*prepare_str(t_list *com, char *str)
 		str[0] != '+' && input_symb(com->flags, '-'))
 		str = ft_strjoin("+", str);
 	if (input_symb(com->flags, ' ') && (ft_atoi(str) >= 0) &&
-		!input_symb(com->flags, '+'))
+		!input_symb(com->flags, '+') && !com->width)
 		str = ft_strjoin(" ", str);
+	if (input_symb(com->flags, ' ') && com->width && ((int)ft_strlen(str) < ft_atoi(com->width)) &&
+		!input_symb(com->flags, '+'))
+	{
+		str = ft_strjoin(" ", str);
+	}
 	if (com->width && !input_symb(com->flags, '0') &&
 		(ft_atoi(com->width) > (int)ft_strlen(str)))
 		str = add_esp(str, com);
