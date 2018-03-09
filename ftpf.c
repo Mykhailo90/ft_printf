@@ -158,6 +158,7 @@ int					ft_printf(char *str, ...)
 	int				i;
 	int				res;
 
+	setlocale(LC_ALL, "");
 	i = 0;
 	res = 0;
 	va_start(argptr, str);
