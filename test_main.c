@@ -26,8 +26,9 @@ int			main(void)
 
   //
 
-  	printf("%s %s\n", NULL, "string");
-   ft_printf("%s %s\n", NULL, "string");
+  //	printf("%o\n", 0);
+   ft_printf("% 4.5i\n", 42);
+   printf("% 4.5i\n", 42);
 
  	//ft_printf("%d", ft_printf("% c\n", 0));
 	  

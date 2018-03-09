@@ -103,7 +103,7 @@ char		*prepare_str(t_list *com, char *str)
 {
 	if (!com->width && com->precision && ft_atoi(com->precision) == 0 && ft_atoi(str) == 0)
 	{
-		free(str);
+	//	free(str);
 		return ("\0");
 	}
 	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str) && ft_atoi(str) >= 0)
@@ -136,6 +136,11 @@ char		*prepare_str(t_list *com, char *str)
 		!input_symb(com->flags, '+') && !com->width)
 		str = ft_strjoin(" ", str);
 	if (input_symb(com->flags, ' ') && com->width && ((int)ft_strlen(str) < ft_atoi(com->width)) &&
+		!input_symb(com->flags, '+'))
+	{
+		str = ft_strjoin(" ", str);
+	}
+	if (input_symb(com->flags, ' ') && com->specificator == 'i' && com->width &&
 		!input_symb(com->flags, '+'))
 	{
 		str = ft_strjoin(" ", str);
