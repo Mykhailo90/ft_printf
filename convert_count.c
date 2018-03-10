@@ -27,15 +27,16 @@ unsigned char		*search_wt_str(va_list argptr, t_list *com)
 {
 	wchar_t			*tmp;
 	unsigned char	*res_str;
-	char			nn[] = "(null)";
-	
+	char			*nn;
+
+	nn = "(null)";
 	res_str = NULL;
 	tmp = NULL;
 	tmp = va_arg(argptr, wchar_t *);
 	if (tmp == NULL)
 		res_str = (unsigned char *)nn;
-	else if (com->precision && (ft_atoi(com->precision) < size_wt(tmp)))
-		res_str = convert_in_str1(tmp, ft_atoi(com->precision));
+	else if (com->pr && (ft_atoi(com->pr) < size_wt(tmp)))
+		res_str = convert_in_str1(tmp, ft_atoi(com->pr));
 	else
 		res_str = convert_in_str(tmp);
 	return (res_str);

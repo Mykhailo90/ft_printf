@@ -22,7 +22,8 @@ SRC = ft_atoi.c ft_bzero.c ft_putnbr.c ft_isdigit.c ft_itoa.c ft_memalloc.c \
 		flags.c width.c precision.c ft_strdel.c ft_strnew.c ft_itoa_u.c\
 		ft_memdel.c size.c prepare_str_d.c help_add_func.c \
 		convert.c search_prepare_func.c search_sp_func.c ft_is_it_space.c\
-		convert_count.c add_prepare.c add_func1.c help_func.c ftpf.c
+		convert_count.c add_prepare.c add_func1.c help_func.c\
+		ftpf.c ft_start.c search_err.c
 
 OBJ = $(SRC:.c=.o)
 

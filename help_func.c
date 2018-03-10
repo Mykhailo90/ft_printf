@@ -49,7 +49,7 @@ char 					*add_null_before_pr(t_list *com, char *str)
 	int 	len;
 
 	del = str;
-	len = ft_atoi(com->precision) - (int)ft_strlen(str);
+	len = ft_atoi(com->pr) - (int)ft_strlen(str);
 	tmp = ft_strnew(len);
 	full_n(tmp, 0, len);
 	str = ft_strjoin(tmp, str);
@@ -60,17 +60,17 @@ char 					*add_null_before_pr(t_list *com, char *str)
 
 char					*prepare_str_p(t_list *com, char *str, char ch)
 {
-	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
+	if (com->pr && ft_atoi(com->pr) > (int)ft_strlen(str))
 		str = add_null_before_pr(com, str);
 	str = add_hesh(com, str, ch);
-	if (!com->precision && com->width &&
+	if (!com->pr && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
 	{
 		str = add_null_after_w(com, str);
 	}
 	
-	if (com->precision && com->width &&
+	if (com->pr && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str)
 		&& !input_symb(com->flags, '-'))
 		str = add_esp(str, com);

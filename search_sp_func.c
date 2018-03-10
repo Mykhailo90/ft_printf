@@ -85,18 +85,18 @@ unsigned char		*search_sp_x(unsigned long long n, t_list *com, char ch)
 
 char		*prepare_str_u(t_list *com, char *str)
 {
-	if (com->precision && ft_atoi(com->precision) == 0)
+	if (com->pr && ft_atoi(com->pr) == 0)
 	{
 		free(str);
 		return ("\0");
 	}
-	if (!com->precision && com->width &&
+	if (!com->pr && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
 		str = add_null_before_u(com, str);
-	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str))
+	if (com->pr && ft_atoi(com->pr) > (int)ft_strlen(str))
 		str = add_null(com, str);
-	if (com->precision && com->width && ft_atoi(com->width) >
+	if (com->pr && com->width && ft_atoi(com->width) >
 		(int)ft_strlen(str) && !input_symb(com->flags, '-'))
 		str = add_esp(str, com);
 	if (com->width && !input_symb(com->flags, '0') &&

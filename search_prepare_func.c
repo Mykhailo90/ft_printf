@@ -118,7 +118,7 @@ char				*prepare_str_s(t_list *com, char *res_str)
 	char			*nn = "(null)";
 	char			n[] = "\0";
 
-	if (res_str == NULL && com->precision && ft_atoi(com->precision) == 0)
+	if (res_str == NULL && com->pr && ft_atoi(com->pr) == 0)
 	{
 		res_str = n;
 	}
@@ -126,10 +126,10 @@ char				*prepare_str_s(t_list *com, char *res_str)
 	{
 		res_str = nn;
 	}
-	if (com->precision && ft_atoi(com->precision) < (int)ft_strlen(res_str))
+	if (com->pr && ft_atoi(com->pr) < (int)ft_strlen(res_str))
 	{
-		res = ft_strnew(ft_atoi(com->precision));
-		ft_strncpy(res, res_str, ft_atoi(com->precision));
+		res = ft_strnew(ft_atoi(com->pr));
+		ft_strncpy(res, res_str, ft_atoi(com->pr));
 		res_str = res;
 	}
 	if (com->width && !input_symb(com->flags, '0') &&

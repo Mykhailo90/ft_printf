@@ -22,7 +22,7 @@ char			*add_hesh(t_list *com, char *res, char ch)
 	tmp[2] = '\0';
 	tmp[1] = (ch == 'x' || ch == 'p') ? 'x' : 'X';
 	if (ch == 'p' && res[0] == '0' && res[1] == '\0' &&
-		com->precision && ft_atoi(com->precision) == 0)
+		com->pr && ft_atoi(com->pr) == 0)
 	{
 		free(for_del);
 		return ("0x");
@@ -39,8 +39,8 @@ char			*add_null_xv(t_list *com, char *str)
 	help.i = ft_strlen(str);
 	if (input_symb(com->flags, '#'))
 		help.i = help.i + 2;
-	if (com->precision)
-		help.n = ft_atoi(com->precision);
+	if (com->pr)
+		help.n = ft_atoi(com->pr);
 	help.tmp = ft_strnew(help.n - help.i);
 	help.n = help.n - help.i;
 	help.i = 0;

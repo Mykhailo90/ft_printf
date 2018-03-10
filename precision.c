@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   precision.c                                        :+:      :+:    :+:   */
+/*   pr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,20 +12,20 @@
 
 #include "ft_printf.h"
 
-void	write_precision(t_list *commands, char *str)
+void	write_pr(t_list *commands, char *str)
 {
 	int i;
 
 	i = 0;
 	while (ft_isdigit(str[i]))
 		i++;
-	if (commands->precision)
-		ft_strdel(&commands->precision);
-	commands->precision = ft_memalloc(sizeof(char) * i + 1);
-	commands->precision = ft_strncpy(commands->precision, &str[0], i);
+	if (commands->pr)
+		ft_strdel(&commands->pr);
+	commands->pr = ft_memalloc(sizeof(char) * i + 1);
+	commands->pr = ft_strncpy(commands->pr, &str[0], i);
 }
 
-void	search_precision(t_list *commands, char *str)
+void	search_pr(t_list *commands, char *str)
 {
 	int i;
 
@@ -34,14 +34,14 @@ void	search_precision(t_list *commands, char *str)
 	{
 		if (str[i] == '.')
 		{
-			if (commands->precision)
-				ft_strdel(&commands->precision);
-			commands->precision = ft_memalloc(sizeof(char) * 2);
-			commands->precision[0] = '0';
-			commands->precision[1] = '\0';
+			if (commands->pr)
+				ft_strdel(&commands->pr);
+			commands->pr = ft_memalloc(sizeof(char) * 2);
+			commands->pr[0] = '0';
+			commands->pr[1] = '\0';
 		}
 		if (str[i] == '.' && ft_isdigit(str[i + 1]) && str[i + 1] != '0')
-			write_precision(commands, &str[i + 1]);
+			write_pr(commands, &str[i + 1]);
 		i++;
 	}
 }

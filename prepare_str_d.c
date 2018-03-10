@@ -23,7 +23,7 @@ void		full_n(char *tmp, int i, int n)
 
 void		help_func(char *str, t_help *help, t_list *com)
 {
-	help->n = (com->precision) ? help->n - help->i + 1 : help->n - help->i;
+	help->n = (com->pr) ? help->n - help->i + 1 : help->n - help->i;
 	help->tmp[0] = (ft_atoi(str) < 0) ? '-' : '+';
 	if (str[0] == '+' || str[0] == '-')
 		str[0] = '0';
@@ -101,29 +101,29 @@ char		*add_esp(char *str, t_list *com)
 
 char		*prepare_str(t_list *com, char *str)
 {
-	if (!com->width && com->precision && ft_atoi(com->precision) == 0 && ft_atoi(str) == 0)
+	if (!com->width && com->pr && ft_atoi(com->pr) == 0 && ft_atoi(str) == 0)
 	{
 	//	free(str);
 		return ("\0");
 	}
-	if (com->precision && ft_atoi(com->precision) > (int)ft_strlen(str) && ft_atoi(str) >= 0)
+	if (com->pr && ft_atoi(com->pr) > (int)ft_strlen(str) && ft_atoi(str) >= 0)
 	{
 		str = add_null(com, str);
 	}
-	if (com->precision && ft_atoi(com->precision) >= (int)ft_strlen(str) && ft_atoi(str) < 0)
+	if (com->pr && ft_atoi(com->pr) >= (int)ft_strlen(str) && ft_atoi(str) < 0)
 	{
 		str = add_null(com, str);
 	}
-	if (com->width && com->precision && ft_atoi(com->precision) == 0)
+	if (com->width && com->pr && ft_atoi(com->pr) == 0)
 	{
 		str = add_esp("\0", com);
 		return (str);
 	}
-	if (!com->precision && com->width &&
+	if (!com->pr && com->width &&
 		ft_atoi(com->width) > (int)ft_strlen(str) &&
 		input_symb(com->flags, '0') && !input_symb(com->flags, '-'))
 		str = add_null_before(com, str);
-	if (com->precision && com->width && ft_atoi(com->width) >
+	if (com->pr && com->width && ft_atoi(com->width) >
 		(int)ft_strlen(str) && !input_symb(com->flags, '-'))
 		str = add_esp(str, com);
 	if (input_symb(com->flags, '+') && (ft_atoi(str) >= 0) &&

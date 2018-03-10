@@ -28,7 +28,7 @@ typedef struct		s_list
 	int				error;
 	char			*flags;
 	char			*width;
-	char			*precision;
+	char			*pr;
 	char			*size;
 	char			specificator;
 }					t_list;
@@ -40,6 +40,13 @@ typedef struct		s_help
 	char			*tmp;
 	int				number;
 }					t_help;
+
+typedef struct		s_form
+{
+	int				len;
+	long			tmp;
+	unsigned char	*res;
+}					t_form;
 
 unsigned char		*ft_strcat_uv(unsigned char *dest,
 					const unsigned char *src);
@@ -79,7 +86,7 @@ void				ft_memdel(void **ap);
 size_t				len_s(char *str);
 void				search_width(t_list *com, char *str);
 void				search_size(t_list *commands, char *str);
-void				search_precision(t_list *commands, char *str);
+void				search_pr(t_list *commands, char *str);
 void				write_precision(t_list *commands, char *str);
 int					input_symb(char *str, char ch);
 char				*prepare_str(t_list *com, char *str);
@@ -127,8 +134,9 @@ char				*ft_itoa_u(unsigned long long n);
 char				*prepare_str_u(t_list *com, char *str);
 char				*prepare_str_p(t_list *com, char *str, char ch);
 char				*add_null_after(t_list *com, char *str);
-char 				*add_null_after_pr(t_list *com, char *str);
-char 				*add_null_in_s(char *res_str, t_list *com);
+char				*add_null_after_pr(t_list *com, char *str);
+char				*add_null_in_s(char *res_str, t_list *com);
 char				*prepare_str_c(t_list *com, char *str);
 char				*add_null_before_u(t_list *com, char *str);
+char				*prep_part2(char *str, int *i);
 #endif

@@ -15,7 +15,7 @@
 void		set_list_null(t_list *com)
 {
 	com->size = NULL;
-	com->precision = NULL;
+	com->pr = NULL;
 	com->width = NULL;
 	com->flags = NULL;
 }
@@ -26,8 +26,8 @@ char		*add_null(t_list *com, char *str)
 
 	help.number = ft_atoi(str);
 	help.i = ft_strlen(str);
-	if (com->precision)
-		help.n = ft_atoi(com->precision);
+	if (com->pr)
+		help.n = ft_atoi(com->pr);
 	help.tmp = (help.number < 0 || input_symb(com->flags, '+')) ?
 		ft_strnew(help.n - help.i + 1) : ft_strnew(help.n - help.i);
 	if (help.number < 0 || input_symb(com->flags, '+'))

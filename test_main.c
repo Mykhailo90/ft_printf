@@ -16,7 +16,7 @@ int			main(void)
 {
 	long long		i;
 
-	setlocale(LC_ALL, "");
+	//setlocale(LC_ALL, "");
 	i = LONG_MAX;
 	char txt[10];
 	long long rt = 0x10fd13ae0;
@@ -27,8 +27,9 @@ int			main(void)
   //
 
   //	printf("%o\n", 0);
-   printf("%d\n", ft_printf("%C\n", L'�'));
-   printf("%d\n", printf("%C\n", L'�'));
+  // 
+   printf("%d\n", printf("%x\n", 42));
+   printf("%d\n", ft_printf("%x\n", 42));
 
  	//ft_printf("%d", ft_printf("% c\n", 0));
 	  
