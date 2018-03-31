@@ -50,21 +50,19 @@ int		search_dif_fl(char *str, char x)
 	return (0);
 }
 
-void	search_flags(t_list *commands, char *str)
+void	search_flags(char *str)
 {
 	int	i;
 
 	i = 0;
-	commands->flags = ft_memalloc(sizeof(char) * 6);
 	if (search_dif_fl(str, '+'))
-		commands->flags[i++] = '+';
+		g_com.flags[i++] = '+';
 	if (search_dif_fl(str, '-'))
-		commands->flags[i++] = '-';
+		g_com.flags[i++] = '-';
 	if (search_dif_fl(str, '#'))
-		commands->flags[i++] = '#';
+		g_com.flags[i++] = '#';
 	if (search_dif_fl(str, ' '))
-		commands->flags[i++] = ' ';
+		g_com.flags[i++] = ' ';
 	if (search_fl_n(str))
-		commands->flags[i++] = '0';
-	commands->flags[i] = '\0';
+		g_com.flags[i++] = '0';
 }

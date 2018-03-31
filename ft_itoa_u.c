@@ -27,9 +27,9 @@ static size_t			count_symbols_u(unsigned long long n)
 	return (i);
 }
 
-static void				input_symbols_u(char *res, unsigned long long n, size_t len)
+static void				input_symbols_u(char *res, unsigned long long n,
+								size_t len)
 {
-	res[len] = '\0';
 	res = res + len - 1;
 	while (len--)
 	{
@@ -45,11 +45,10 @@ char					*ft_itoa_u(unsigned long long n)
 	char				*start;
 	unsigned long long	num;
 
+	res = ft_strnew(sizeof(char) * count_symbols_u(n));
+	start = res;
 	num = n;
 	len = count_symbols_u(num);
-	if (!(res = ft_memalloc(sizeof(char) * len + 1)))
-		return (NULL);
-	start = res;
-	input_symbols_u(start, num, len);
+	input_symbols_u(&res[0], num, len);
 	return (start);
 }

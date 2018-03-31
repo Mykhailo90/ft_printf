@@ -17,3 +17,9 @@ void	ft_strdel(char **as)
 	if (as)
 		ft_memdel((void **)as);
 }
+
+void	ft_strdel_uv(unsigned char **as)
+{
+	if (as)
+		ft_memdel((void **)as);
+}

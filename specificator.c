@@ -23,7 +23,7 @@ int		is_input_spec(char ch)
 	return (-1);
 }
 
-void	search_specificator(t_list *commands, char *str)
+void	search_specificator(char *str)
 {
 	int i;
 
@@ -33,5 +33,5 @@ void	search_specificator(t_list *commands, char *str)
 		i++;
 	}
 	if (str[i] != '\0')
-		commands->specificator = str[i];
+		g_com.specificator = str[i];
 }

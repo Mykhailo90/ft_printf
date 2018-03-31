@@ -32,15 +32,11 @@ static void			input_symbols(char *res, long long n, size_t len)
 	if (n < 0)
 	{
 		res[0] = '-';
-		res[len + 1] = '\0';
 		res = res + len;
 		n *= -1;
 	}
 	else
-	{
-		res[len] = '\0';
 		res = res + len - 1;
-	}
 	while (len--)
 	{
 		*(res--) = ('0' + n % 10);
@@ -52,19 +48,19 @@ char				*ft_itoa(long long n)
 {
 	char			*res;
 	size_t			len;
+	char			*num;
 	char			*start;
-	long long		num;
 
-	num = n;
-	len = count_symbols(num);
-	res = NULL;
+	num = "-9223372036854775808";
+	len = count_symbols(n);
 	if (n == -9223372036854775807 - 1)
-		return ("-9223372036854775808");
-	if (num < 0 && (!(res = ft_memalloc(sizeof(char) * len + 2))))
-		return (NULL);
-	if (num >= 0 && (!(res = ft_memalloc(sizeof(char) * len + 1))))
-		return (NULL);
+	{
+		res = ft_strdup(num);
+		return (res);
+	}
+	res = (n > 0) ? ft_strnew(sizeof(char) * len) :
+					ft_strnew(sizeof(char) * len + 1);
 	start = res;
-	input_symbols(start, num, len);
+	input_symbols(&res[0], n, len);
 	return (start);
 }

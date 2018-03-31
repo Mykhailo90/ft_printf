@@ -1,47 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pr.c                                        :+:      :+:    :+:   */
+/*   precision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msarapii <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/08 19:58:17 by msarapii          #+#    #+#             */
-/*   Updated: 2018/02/08 19:58:18 by msarapii         ###   ########.fr       */
+/*   Created: 2018/03/27 16:16:33 by msarapii          #+#    #+#             */
+/*   Updated: 2018/03/27 16:16:34 by msarapii         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	write_pr(t_list *commands, char *str)
+void	search_pr(char *str)
 {
 	int i;
+	int n;
 
 	i = 0;
-	while (ft_isdigit(str[i]))
-		i++;
-	if (commands->pr)
-		ft_strdel(&commands->pr);
-	commands->pr = ft_memalloc(sizeof(char) * i + 1);
-	commands->pr = ft_strncpy(commands->pr, &str[0], i);
-}
-
-void	search_pr(t_list *commands, char *str)
-{
-	int i;
-
-	i = 0;
+	n = 0;
 	while (str[i] != '\0' && is_input_spec(str[i]) == -1)
 	{
 		if (str[i] == '.')
-		{
-			if (commands->pr)
-				ft_strdel(&commands->pr);
-			commands->pr = ft_memalloc(sizeof(char) * 2);
-			commands->pr[0] = '0';
-			commands->pr[1] = '\0';
-		}
+			g_com.pr[0] = '0';
 		if (str[i] == '.' && ft_isdigit(str[i + 1]) && str[i + 1] != '0')
-			write_pr(commands, &str[i + 1]);
+		{
+			while (ft_isdigit(str[++i]))
+				n++;
+			if (g_com.pr[0] != '\0')
+				ft_bzero(g_com.pr, 1024);
+			ft_strncpy(g_com.pr, &str[i - n], n);
+		}
 		i++;
 	}
 }

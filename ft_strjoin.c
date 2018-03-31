@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char				*ft_strjoin(char const *s1, char const *s2)
+char				*ft_strjoin(char *s1, char *s2)
 {
 	char			*res;
 
@@ -22,11 +22,13 @@ char				*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strcpy(res, s1);
 	ft_strcat(res, s2);
+	ft_strdel(&s1);
+	ft_strdel(&s2);
 	return (res);
 }
 
-unsigned char		*ft_strjoin_uv(unsigned char const *s1,
-									unsigned char const *s2)
+unsigned char		*ft_strjoin_uv(unsigned char *s1,
+									unsigned char *s2)
 {
 	unsigned char	*res;
 
@@ -36,5 +38,7 @@ unsigned char		*ft_strjoin_uv(unsigned char const *s1,
 		return (NULL);
 	ft_strcpy_uv(res, s1);
 	ft_strcat_uv(res, s2);
+	ft_strdel_uv(&s1);
+	ft_strdel_uv(&s2);
 	return (res);
 }

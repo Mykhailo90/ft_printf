@@ -31,6 +31,5 @@ size_t			ft_strlen_uv(const unsigned char *s)
 	{
 		count++;
 	}
-
 	return (count);
 }

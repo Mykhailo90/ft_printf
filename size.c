@@ -21,6 +21,20 @@ int			is_it_size(char ch)
 		return (0);
 }
 
+int			check_size(char ch)
+{
+	int		i;
+
+	i = 0;
+	while (g_com.size[i] != '\0')
+	{
+		if (g_com.size[i] == ch)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 size_t		len_s(char *str)
 {
 	size_t	i;
@@ -31,66 +45,44 @@ size_t		len_s(char *str)
 	return (i);
 }
 
-int			search_hh(t_list *commands, char *str)
+int			search_hl(char *str)
 {
 	int		i;
 
 	i = 0;
-	if (str[i] == 'h' && str[i + 1] == 'h')
+	if (str[i] == 'h' && str[i + 1] == 'h' && check_size('1') == 0)
 	{
-		if (commands->size)
-			commands->size = ft_strjoin(commands->size, "1");
-		else
-		{
-			commands->size = ft_memalloc(sizeof(char) * 2);
-			commands->size[0] = '1';
-		}
+		while (g_com.size[i] != '\0')
+			i++;
+		g_com.size[i] = '1';
+		return (1);
+	}
+	if (str[i] == 'l' && str[i + 1] == 'l' && check_size('2') == 0)
+	{
+		while (g_com.size[i] != '\0')
+			i++;
+		g_com.size[i] = '2';
 		return (1);
 	}
 	return (0);
 }
 
-int			search_ll(t_list *commands, char *str)
+void		search_size(char *str)
 {
 	int		i;
+	int		n;
 
 	i = 0;
-	if (str[i] == 'l' && str[i + 1] == 'l')
-	{
-		if (commands->size)
-			commands->size = ft_strjoin(commands->size, "2");
-		else
-		{
-			commands->size = ft_memalloc(sizeof(char) * 2);
-			commands->size[0] = '2';
-		}
-		return (1);
-	}
-	return (0);
-}
-
-void		search_size(t_list *commands, char *str)
-{
-	int		i;
-	char	tmp[2];
-
-	i = 0;
-	tmp[1] = '\0';
+	n = 0;
 	while (str[i] != '\0' && is_input_spec(str[i]) == -1)
 	{
-		if (is_it_size(str[i]) && (search_hh(commands, &str[i]) ||
-			search_ll(commands, &str[i])))
+		if (is_it_size(str[i]) && search_hl(&str[i]))
 			i++;
-		else if (is_it_size(str[i]))
+		else if (is_it_size(str[i]) && check_size(str[i]) == 0)
 		{
-			tmp[0] = str[i];
-			if (commands->size)
-				commands->size = ft_strjoin(commands->size, tmp);
-			else
-			{
-				commands->size = ft_memalloc(sizeof(char) * 2);
-				commands->size[0] = str[i];
-			}
+			while (g_com.size[n] != '\0')
+				n++;
+			g_com.size[n] = str[i];
 		}
 		i++;
 	}
